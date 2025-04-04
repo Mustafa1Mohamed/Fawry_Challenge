@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class Main {
     public static void main(String[] args) {
         Product cheese = new ExpirableProducts("Cheese", 200, 5, 200);
@@ -10,7 +12,7 @@ public class Main {
         cart.add(biscuits, 1);
 
         Customer customer = new Customer(2000);
-
+        System.out.println("Hello World");
         CheckoutService checkoutService = new CheckoutService();
         checkoutService.checkout(customer, cart);
     }

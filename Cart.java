@@ -5,10 +5,12 @@ public class Cart {
     private final List<Product> products=new ArrayList<>();
     public void add(Product product,int quantity){
         if(product.getQuantatiy()<quantity){
-           throw new  IllegalArgumentException("not enough stock for "+product.getName());
+           System.out.println("There are no enough stock");
         }
-        product.reduceQuantity(quantity);
-        products.add(product);
+        else {
+            product.reduceQuantity(quantity);
+            products.add(product);
+        }
     }
 
     public List<Product> getProducts() {

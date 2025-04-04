@@ -20,7 +20,7 @@ public class CheckoutService {
             throw new IllegalArgumentException("Your balance not enough");
 
         }
-        else {
+
             customer.deductBalance(totalFee);
             System.out.println("checkOut Reciept");
             for (Product product:cart.getProducts()){
@@ -37,7 +37,7 @@ public class CheckoutService {
             }
 
 
-        }
+
 
     }
 }

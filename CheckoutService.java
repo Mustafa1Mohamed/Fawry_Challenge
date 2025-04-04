@@ -5,21 +5,21 @@ public class CheckoutService {
     private static final int SHIPPING_FEE=30;
     public void checkout(Customer customer,Cart cart){
         if (cart.getProducts().isEmpty()){
-            throw new IllegalArgumentException("Cart is empty");
+            System.out.println("Cart is empty");
         }
-        double subtotal=0;
-        List<Shippable>shippablesItems=new ArrayList<>();
-        for (Product product:cart.getProducts()){
-            subtotal+=product.getPrice();
-            if (product instanceof Shippable){
-                shippablesItems.add((Shippable)product);
+        else {
+            double subtotal=0;
+            List<Shippable>shippablesItems=new ArrayList<>();
+            for (Product product:cart.getProducts()){
+                subtotal+=product.getPrice();
+                if (product instanceof Shippable){
+                    shippablesItems.add((Shippable)product);
+                }
             }
-        }
-        double totalFee=subtotal+SHIPPING_FEE;
-        if (customer.getBalance()<totalFee){
-            throw new IllegalArgumentException("Your balance not enough");
-
-        }
+            double totalFee=subtotal+SHIPPING_FEE;
+            if (customer.getBalance()<totalFee){
+                  System.out.println("Your balance not enough");
+            }
 
             customer.deductBalance(totalFee);
             System.out.println("checkOut Reciept");
@@ -35,9 +35,6 @@ public class CheckoutService {
             if (!shippablesItems.isEmpty()) {
                 new ShippingService().ship(shippablesItems);
             }
-
-
-
-
+        }
     }
 }

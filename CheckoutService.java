@@ -8,11 +8,11 @@ public class CheckoutService {
             throw new IllegalArgumentException("Cart is empty");
         }
         double subtotal=0;
-        List<Shippable>shippablesItems=new ArrayList<>();
+        List<Shippable>shippableItems=new ArrayList<>();
         for (Product product:cart.getProducts()){
             subtotal+=product.getPrice();
             if (product instanceof Shippable){
-                shippablesItems.add((Shippable)product);
+                shippableItems.add((Shippable)product);
             }
         }
         double totalFee=subtotal+SHIPPING_FEE;
@@ -22,7 +22,7 @@ public class CheckoutService {
         }
 
             customer.deductBalance(totalFee);
-            System.out.println("checkOut Reciept");
+            System.out.println("checkOut Receipt");
             for (Product product:cart.getProducts()){
                 System.out.println(product.getName()+' '+product.getPrice());
             }
@@ -30,10 +30,10 @@ public class CheckoutService {
             System.out.println("Subtotal "+subtotal);
             System.out.println("total "+totalFee);
             System.out.println("ShippingFee "+SHIPPING_FEE);
-            System.out.println("Avaliable Balance "+customer.getBalance());
+            System.out.println("Available Balance "+customer.getBalance());
 
-            if (!shippablesItems.isEmpty()) {
-                new ShippingService().ship(shippablesItems);
+            if (!shippableItems.isEmpty()) {
+                new ShippingService().ship(shippableItems);
             }
 
 
